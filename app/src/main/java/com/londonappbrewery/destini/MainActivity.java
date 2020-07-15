@@ -27,7 +27,30 @@ public class MainActivity extends AppCompatActivity {
         mStoryTextView = findViewById(R.id.storyTextView);
         mButtonTop = findViewById(R.id.buttonTop);
         mButtonBottom = findViewById(R.id.buttonBottom);
-        mStoryIndex = 1;
+
+        if(savedInstanceState != null){
+            mStoryIndex = savedInstanceState.getInt("StoryIndex");
+            if(mStoryIndex == 2){
+                mStoryTextView.setText(R.string.T2_Story);
+                mButtonTop.setText(R.string.T2_Ans1);
+                mButtonBottom.setText(R.string.T2_Ans2);
+            }
+            else if(mStoryIndex == 3){
+                mStoryTextView.setText(R.string.T3_Story);
+                mButtonTop.setText(R.string.T3_Ans1);
+                mButtonBottom.setText(R.string.T3_Ans2);
+            }
+            else if(mStoryIndex == 4){
+               mStoryTextView.setText("Do you want to restart the game?");
+                mButtonTop.setText(R.string.restart);
+                mButtonBottom.setText(R.string.closeApp);
+            }
+            else{
+                mStoryIndex = 1;
+            }
+
+        }
+
 
 
         // TODO: Steps 6, 7, & 9 - Set a listener on the top button:
@@ -108,12 +131,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //Save the state of the app if orientation is changed
-    /*
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        outState.putInt("StoryIndex", mStoryIndex);
     }
 
-     */
 }
